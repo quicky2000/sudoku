@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <sstream>
+#include <iomanip>
+#include "math.h"
 using namespace std;
 
 //-----------------------------------------------------------------------------
@@ -49,6 +51,12 @@ string sudoku_situation::toString(void)const
   return l_result.str();
 }
 
+//-----------------------------------------------------------------------------
+string sudoku_situation::getUniqueId(void)const
+{
+  return m_unique_id;
+}
+
 
 //-----------------------------------------------------------------------------
 sudoku_situation::~sudoku_situation(void)
@@ -59,7 +67,9 @@ sudoku_situation::~sudoku_situation(void)
 //-----------------------------------------------------------------------------
 sudoku_situation::sudoku_situation(const unsigned int p_side_size):
   m_side_size(p_side_size),
-  m_big_side_size(p_side_size*p_side_size)
+  m_big_side_size(p_side_size*p_side_size),
+  m_value_string_width((unsigned int)ceil(log10(m_big_side_size))),
+  m_unique_id(m_big_side_size*m_big_side_size*m_value_string_width,' ')
 {
   this->setContext(new sudoku_context(m_side_size));
 }
@@ -82,6 +92,15 @@ void sudoku_situation::setValue(const unsigned int p_x,const unsigned int p_y,co
 {
   assert(p_x >= 0 && p_y >= 0 && p_x < m_big_side_size && p_y < m_big_side_size);
   assert(!m_values.count(pair<unsigned int,unsigned int>(p_x,p_y)));
+
+  // Inserting value in value map
   m_values.insert(map<pair<unsigned int,unsigned int>,unsigned int>::value_type(pair<unsigned int,unsigned int>(p_x,p_y),p_value));
+
+  // Updating the unique identifier
+  stringstream l_stream;
+  l_stream << setw(m_value_string_width) << setfill('0') << p_value ;
+  m_unique_id.replace((p_x + m_big_side_size * p_y)*m_value_string_width,m_value_string_width,l_stream.str());
+
+  //Updating context according to the new value
   getContext()->setValue(p_x,p_y,p_value);
 }
