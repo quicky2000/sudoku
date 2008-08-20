@@ -47,7 +47,7 @@ vector<sudoku_transition*> sudoku_situation_analyzer::getTransitions
 	      if(l_previous_size == l_transitions.size())
 		{
 		  cout << "You miss something : no value possible for (" << l_x << "," << l_y << ")" << endl ;
-		  exit(-1);
+		  p_situation->setInvalid();
 		}
 	    }
 	}
