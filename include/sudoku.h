@@ -7,6 +7,8 @@
 #include "sudoku_transition.h"
 #include "sudoku_context.h"
 
+class FSM_weighted_transition_index_if;
+
 class sudoku:public FSM<sudoku_situation,sudoku_transition>
 {
 	public:
@@ -17,5 +19,7 @@ class sudoku:public FSM<sudoku_situation,sudoku_transition>
 	// Methods inherited from FSM
 	void configure(void);
 	string toString(void)const;
+	void computeTransitionWeights(std::vector<FSM_weighted_transition_index_if*> &p_vector)const;
+
 };
 #endif
