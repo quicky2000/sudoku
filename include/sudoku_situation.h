@@ -10,7 +10,7 @@ class sudoku_situation:public FSM_situation<sudoku_context>
 {
  public:
   // Constructors and destructors
-  sudoku_situation(const unsigned int m_side_size);
+  sudoku_situation(const unsigned char m_side_size);
   ~sudoku_situation(void);
   
   // Methods inherited from FSM_situation
@@ -18,15 +18,15 @@ class sudoku_situation:public FSM_situation<sudoku_context>
   string getUniqueId(void)const;
   
   // Dedicated methods
-  unsigned int getValue(const unsigned int p_x,const unsigned int p_y)const;
-  void setValue(const unsigned int p_x,const unsigned int p_y,const unsigned int p_value);
+  unsigned char getValue(const unsigned char p_x,const unsigned char p_y)const;
+  void setValue(const unsigned char p_x,const unsigned char p_y,const unsigned char p_value);
 
  private:
-  const unsigned int m_side_size;
-  const unsigned int m_big_side_size;
-  const unsigned int m_value_string_width;
+  const unsigned char m_side_size;
+  const unsigned char m_big_side_size;
+  const unsigned char m_value_string_width;
   string m_unique_id;
-  std::map<std::pair<unsigned int,unsigned int>, unsigned int> m_values;
+  std::map<std::pair<unsigned char,unsigned char>, unsigned char> m_values;
 };
 
 #endif

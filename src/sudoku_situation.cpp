@@ -34,10 +34,10 @@ string sudoku_situation::toString(void)const
 	{
 	  l_result << "| "  ;
 	}
-	  unsigned int l_value = getValue(l_x,l_y);
+	  unsigned char l_value = getValue(l_x,l_y);
 	  if(l_value)
 	    {
-	      l_result << l_value ;
+	      l_result << (unsigned int)l_value ;
 	    }
 	  else
 	    {
@@ -65,7 +65,7 @@ sudoku_situation::~sudoku_situation(void)
 
 
 //-----------------------------------------------------------------------------
-sudoku_situation::sudoku_situation(const unsigned int p_side_size):
+sudoku_situation::sudoku_situation(const unsigned char p_side_size):
   m_side_size(p_side_size),
   m_big_side_size(p_side_size*p_side_size),
   m_value_string_width((unsigned int)ceil(log10(m_big_side_size))),
@@ -75,11 +75,11 @@ sudoku_situation::sudoku_situation(const unsigned int p_side_size):
 }
 
 //-----------------------------------------------------------------------------
-unsigned int sudoku_situation::getValue(const unsigned int p_x,const unsigned int p_y)const
+unsigned char sudoku_situation::getValue(const unsigned char p_x,const unsigned char p_y)const
 {
-  unsigned int l_result = 0;
-  assert(p_x >= 0 && p_y >= 0 && p_x < m_big_side_size && p_y < m_big_side_size);
-  map<pair<unsigned int,unsigned int>,unsigned int>::const_iterator l_iter = m_values.find(pair<unsigned int,unsigned int>(p_x,p_y));
+  unsigned char l_result = 0;
+  assert(p_x < m_big_side_size && p_y < m_big_side_size);
+  map<pair<unsigned char,unsigned char>,unsigned char>::const_iterator l_iter = m_values.find(pair<unsigned char,unsigned char>(p_x,p_y));
   if(l_iter != m_values.end())
     {
       l_result = l_iter->second;
@@ -88,13 +88,13 @@ unsigned int sudoku_situation::getValue(const unsigned int p_x,const unsigned in
 }
 
 //-----------------------------------------------------------------------------
-void sudoku_situation::setValue(const unsigned int p_x,const unsigned int p_y,const unsigned int p_value)
+void sudoku_situation::setValue(const unsigned char p_x,const unsigned char p_y,const unsigned char p_value)
 {
-  assert(p_x >= 0 && p_y >= 0 && p_x < m_big_side_size && p_y < m_big_side_size);
-  assert(!m_values.count(pair<unsigned int,unsigned int>(p_x,p_y)));
+  assert(p_x < m_big_side_size && p_y < m_big_side_size);
+  assert(!m_values.count(pair<unsigned char,unsigned char>(p_x,p_y)));
 
   // Inserting value in value map
-  m_values.insert(map<pair<unsigned int,unsigned int>,unsigned int>::value_type(pair<unsigned int,unsigned int>(p_x,p_y),p_value));
+  m_values.insert(map<pair<unsigned char,unsigned char>,unsigned char>::value_type(pair<unsigned char,unsigned char>(p_x,p_y),p_value));
 
   // Updating the unique identifier
   stringstream l_stream;
