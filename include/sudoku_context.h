@@ -18,7 +18,7 @@ class sudoku_context:public FSM_context<sudoku_transition>
   
   // Specific methods
   void setValue(const unsigned int p_x,const unsigned int p_y,const unsigned int p_value);
-  void getForbiddenValues(const unsigned int p_x,const unsigned int p_y,set<unsigned int> &p_result);
+  void getAuthorizedValues(const unsigned int p_x,const unsigned int p_y,set<unsigned int> &p_result);
 
  private:
   unsigned int getSquareId(const unsigned int p_x,const unsigned int p_y)const;

@@ -98,7 +98,7 @@ void sudoku_situation::setValue(const unsigned char p_x,const unsigned char p_y,
 
   // Updating the unique identifier
   stringstream l_stream;
-  l_stream << setw(m_value_string_width) << setfill('0') << p_value ;
+  l_stream << setw(m_value_string_width) << setfill('0') << (unsigned int)p_value ;
   m_unique_id.replace((p_x + m_big_side_size * p_y)*m_value_string_width,m_value_string_width,l_stream.str());
 
   //Updating context according to the new value
