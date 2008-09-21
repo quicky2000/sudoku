@@ -137,7 +137,7 @@ sudoku::sudoku(void):FSM<sudoku_situation,sudoku_transition>("sudoku",new sudoku
 	getSituation()->setValue(8,8,7);*/
 
 	// Diabolique
-	getSituation()->setValue(0,0,3);
+/*	getSituation()->setValue(0,0,3);
 	getSituation()->setValue(5,0,1);
 	getSituation()->setValue(6,0,2);
 
@@ -170,9 +170,42 @@ sudoku::sudoku(void):FSM<sudoku_situation,sudoku_transition>("sudoku",new sudoku
 
 	getSituation()->setValue(2,8,1);
 	getSituation()->setValue(5,8,2);
-	getSituation()->setValue(6,8,6);
+	getSituation()->setValue(6,8,6);*/
 
+	// Diabolique 2
+	getSituation()->setValue(1,0,2);
+	getSituation()->setValue(7,0,7);
+	getSituation()->setValue(8,0,8);
 
+	getSituation()->setValue(2,1,5);
+	getSituation()->setValue(3,1,6);
+
+	getSituation()->setValue(0,2,4);
+	getSituation()->setValue(3,2,1);
+
+	getSituation()->setValue(2,3,8);
+	getSituation()->setValue(3,3,2);
+	getSituation()->setValue(8,3,1);
+
+	getSituation()->setValue(0,4,7);
+	getSituation()->setValue(2,4,1);
+	getSituation()->setValue(4,4,8);
+	getSituation()->setValue(6,4,3);
+	getSituation()->setValue(8,4,6);
+
+	getSituation()->setValue(0,5,6);
+	getSituation()->setValue(5,5,1);
+	getSituation()->setValue(6,5,5);
+
+	getSituation()->setValue(5,6,3);
+	getSituation()->setValue(8,6,7);
+
+	getSituation()->setValue(5,7,9);
+	getSituation()->setValue(6,7,8);
+
+	getSituation()->setValue(0,8,9);
+	getSituation()->setValue(1,8,1);
+	getSituation()->setValue(7,8,4);
 }
 
 //-----------------------------------------------------------------------------
@@ -281,7 +314,7 @@ void sudoku::computeTransitionWeights(std::vector<FSM_weighted_transition_index_
 		}
 	}
       
-      p_vector.push_back(new FSM_weighted_transition_index(l_index,l_weight));
+      p_vector.push_back(new FSM_weighted_transition_index(l_index,l_weight - 1));
     }
 
 }
