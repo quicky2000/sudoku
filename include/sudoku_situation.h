@@ -16,6 +16,7 @@ class sudoku_situation:public FSM_situation<sudoku_context>
   // Methods inherited from FSM_situation
   string toString(void)const;
   string getUniqueId(void)const;
+  bool isFinal(void)const;
   
   // Dedicated methods
   unsigned char getValue(const unsigned char p_x,const unsigned char p_y)const;

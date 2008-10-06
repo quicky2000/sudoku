@@ -104,3 +104,9 @@ void sudoku_situation::setValue(const unsigned char p_x,const unsigned char p_y,
   //Updating context according to the new value
   getContext()->setValue(p_x,p_y,p_value);
 }
+
+//-----------------------------------------------------------------------------
+bool sudoku_situation::isFinal(void)const
+{
+  return m_values.size()==m_big_side_size*m_big_side_size;
+}
