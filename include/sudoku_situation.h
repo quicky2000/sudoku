@@ -17,10 +17,12 @@ class sudoku_situation:public FSM_situation<sudoku_context>
   string toString(void)const;
   string getUniqueId(void)const;
   bool isFinal(void)const;
-  
+  bool less(const FSM_situation_if *p_object2)const;
+
   // Dedicated methods
   unsigned char getValue(const unsigned char p_x,const unsigned char p_y)const;
   void setValue(const unsigned char p_x,const unsigned char p_y,const unsigned char p_value);
+  bool less(const sudoku_situation *p_situation)const;
 
  private:
   const unsigned char m_side_size;

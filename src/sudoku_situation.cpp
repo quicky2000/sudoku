@@ -110,3 +110,15 @@ bool sudoku_situation::isFinal(void)const
 {
   return m_values.size()==m_big_side_size*m_big_side_size;
 }
+
+//-----------------------------------------------------------------------------
+bool sudoku_situation::less(const FSM_situation_if *p_situation)const
+{
+  return this->less(dynamic_cast<const sudoku_situation*>(p_situation)); 
+}
+
+//-----------------------------------------------------------------------------
+bool sudoku_situation::less(const sudoku_situation *p_situation)const
+{
+  return m_values<p_situation->m_values; 
+}
