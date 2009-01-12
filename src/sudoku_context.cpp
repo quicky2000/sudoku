@@ -1,6 +1,7 @@
 #include "sudoku_context.h"
 
 #include <sstream>
+#include <algorithm>
 using namespace std;
 
 //-----------------------------------------------------------------------------
