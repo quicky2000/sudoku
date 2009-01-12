@@ -15,7 +15,7 @@ class sudoku_situation:public FSM_situation<sudoku_context>
   
   // Methods inherited from FSM_situation
   string toString(void)const;
-  string getUniqueId(void)const;
+  string getStringId(void)const;
   bool isFinal(void)const;
   bool less(const FSM_situation_if *p_object2)const;
 

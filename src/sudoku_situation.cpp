@@ -52,7 +52,7 @@ string sudoku_situation::toString(void)const
 }
 
 //-----------------------------------------------------------------------------
-string sudoku_situation::getUniqueId(void)const
+string sudoku_situation::getStringId(void)const
 {
   return m_unique_id;
 }
