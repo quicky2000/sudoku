@@ -22,7 +22,7 @@
 #include "sudoku_situation.h"
 #include "sudoku_transition.h"
 
-class sudoku_situation_analyzer: public FSM_situation_analyzer<sudoku_situation,sudoku_transition>
+class sudoku_situation_analyzer: public FSM_base::FSM_situation_analyzer<sudoku_situation,sudoku_transition>
 {
  public:
   // Constructors and Destructors
@@ -30,11 +30,12 @@ class sudoku_situation_analyzer: public FSM_situation_analyzer<sudoku_situation,
   ~sudoku_situation_analyzer(void);
 
   // Methods inherited from FSM_situation_analyzer
-  string toString(void);
-  vector<sudoku_transition*> getTransitions(sudoku_situation* p_situation);
+  const std::string & get_class_name(void)const;
+  std::vector<const sudoku_transition *> & get_transitions(sudoku_situation & p_situation);
 
  private:
   const unsigned int m_big_side_size;
+  static const std::string m_class_name;    
 
 };
 #endif /* SUDOKU_SITUATION_ANALYZER */

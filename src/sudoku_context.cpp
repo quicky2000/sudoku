@@ -66,9 +66,15 @@ sudoku_context::sudoku_context(const sudoku_context &p_context):
 }
 
 //-----------------------------------------------------------------------------
-string sudoku_context::toString(void)const
+const std::string sudoku_context::to_string(void)const
 {
   return "__FUNCTION__ Not implemented";
+}
+
+//-----------------------------------------------------------------------------
+void sudoku_context::to_string(std::string & p_result)const
+{
+  p_result = "__FUNCTION__ Not implemented";
 }
 
 //-----------------------------------------------------------------------------

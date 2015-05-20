@@ -24,18 +24,19 @@
 
 #include <set>
 
-class sudoku_context:public FSM_context<sudoku_transition>
+class sudoku_context:public FSM_base::FSM_context<sudoku_transition>
 {
  public:
   sudoku_context(const unsigned int p_side_size);
   sudoku_context(const sudoku_context &p_context);
 
   // Methods inherited from interface
-  string toString(void)const;
+  const std::string to_string(void)const;
+  void to_string(std::string &)const;
   
   // Specific methods
   void setValue(const unsigned int p_x,const unsigned int p_y,const unsigned int p_value);
-  void getAuthorizedValues(const unsigned int p_x,const unsigned int p_y,set<unsigned int> &p_result);
+  void getAuthorizedValues(const unsigned int p_x,const unsigned int p_y,std::set<unsigned int> &p_result);
 
  private:
   unsigned int getSquareId(const unsigned int p_x,const unsigned int p_y)const;

@@ -23,7 +23,7 @@
 #include "sudoku_situation.h"
 #include "sudoku_transition.h"
 
-class sudoku_motor:public FSM_motor<sudoku_situation,sudoku_transition>
+class sudoku_motor:public FSM_base::FSM_motor<sudoku_situation,sudoku_transition>
 {
  public:
   // Constructors and destructors
@@ -31,8 +31,11 @@ class sudoku_motor:public FSM_motor<sudoku_situation,sudoku_transition>
   ~sudoku_motor(void);
   
   // Methods inherited from FSM_motor
-  string toString(void);
-  sudoku_situation* run(sudoku_situation* p_situation, sudoku_transition *p_transition);
+  const std::string & get_class_name(void)const;
+  sudoku_situation & run(const sudoku_situation & p_situation,const sudoku_transition & p_transition);
+
+ private:
+  static const std::string m_class_name;
 };
 
 #endif

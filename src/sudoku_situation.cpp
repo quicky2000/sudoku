@@ -25,7 +25,7 @@
 using namespace std;
 
 //-----------------------------------------------------------------------------
-string sudoku_situation::toString(void)const
+void sudoku_situation::to_string(std::string & p_string)const
 {
   stringstream l_result;
   const string l_horizontal_separator = string(m_big_side_size*4+1,'-');
@@ -65,16 +65,29 @@ string sudoku_situation::toString(void)const
       l_result << "|" << endl ;
     }
   l_result << l_horizontal_separator << endl ;
-  return l_result.str();
+  p_string = l_result.str();
 }
 
 //-----------------------------------------------------------------------------
-string sudoku_situation::getStringId(void)const
+const string sudoku_situation::to_string(void)const
+{
+  std::string l_result;
+  sudoku_situation::to_string(l_result);
+  return l_result;
+}
+
+//-----------------------------------------------------------------------------
+const string sudoku_situation::get_string_id(void)const
 {
   return m_unique_id;
 }
 
-
+//-----------------------------------------------------------------------------
+void sudoku_situation::get_string_id(std::string & p_string_id)const
+{
+  p_string_id = m_unique_id;
+}
+ 
 //-----------------------------------------------------------------------------
 sudoku_situation::~sudoku_situation(void)
 {
@@ -88,7 +101,7 @@ sudoku_situation::sudoku_situation(const unsigned char p_side_size):
   m_value_string_width((unsigned int)ceil(log10(m_big_side_size))),
   m_unique_id(m_big_side_size*m_big_side_size*m_value_string_width,' ')
 {
-  this->setContext(new sudoku_context(m_side_size));
+  this->set_context(*(new sudoku_context(m_side_size)));
 }
 
 //-----------------------------------------------------------------------------
@@ -119,11 +132,11 @@ void sudoku_situation::setValue(const unsigned char p_x,const unsigned char p_y,
   m_unique_id.replace((p_x + m_big_side_size * p_y)*m_value_string_width,m_value_string_width,l_stream.str());
 
   //Updating context according to the new value
-  getContext()->setValue(p_x,p_y,p_value);
+  get_context()->setValue(p_x,p_y,p_value);
 }
 
 //-----------------------------------------------------------------------------
-bool sudoku_situation::isFinal(void)const
+bool sudoku_situation::is_final(void)const
 {
   return m_values.size()==m_big_side_size*m_big_side_size;
 }

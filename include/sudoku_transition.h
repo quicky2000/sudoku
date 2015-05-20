@@ -20,7 +20,7 @@
 
 #include "FSM_transition_if.h"
 
-class sudoku_transition: public FSM_transition_if
+class sudoku_transition: public FSM_interfaces::FSM_transition_if
 {
  public:
   // Constructors && Destructors
@@ -28,7 +28,8 @@ class sudoku_transition: public FSM_transition_if
   ~sudoku_transition(void);
   
   // Methods inherited from interface
-  string toString(void)const;
+  const std::string to_string(void)const;
+  void to_string(std::string &)const;
   
   // Specific methods
   unsigned int getX(void)const;

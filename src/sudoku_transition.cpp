@@ -39,11 +39,19 @@ sudoku_transition::~sudoku_transition(void)
 }
 
 //-----------------------------------------------------------------------------
-string sudoku_transition::toString(void)const
+const string sudoku_transition::to_string(void)const
 {
   stringstream l_stream;
   l_stream << m_value << " => (" << m_x << "," << m_y << ")" ;
   return l_stream.str();
+}
+
+//-----------------------------------------------------------------------------
+void sudoku_transition::to_string(std::string & p_result)const
+{
+  stringstream l_stream;
+  l_stream << m_value << " => (" << m_x << "," << m_y << ")" ;
+  p_result = l_stream.str();
 }
 
 //-----------------------------------------------------------------------------

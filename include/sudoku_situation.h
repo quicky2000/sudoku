@@ -23,7 +23,7 @@
 
 #include <map>
 
-class sudoku_situation:public FSM_situation<sudoku_context>
+class sudoku_situation:public FSM_base::FSM_situation<sudoku_context>
 {
  public:
   // Constructors and destructors
@@ -31,9 +31,11 @@ class sudoku_situation:public FSM_situation<sudoku_context>
   ~sudoku_situation(void);
   
   // Methods inherited from FSM_situation
-  string toString(void)const;
-  string getStringId(void)const;
-  bool isFinal(void)const;
+  const std::string to_string(void)const;
+  void to_string(std::string &)const;
+  const std::string get_string_id(void)const;
+  void get_string_id(std::string & p_string_id)const;
+  bool is_final(void)const;
   bool less(const FSM_situation_if *p_object2)const;
 
   // Dedicated methods
@@ -42,10 +44,11 @@ class sudoku_situation:public FSM_situation<sudoku_context>
   bool less(const sudoku_situation *p_situation)const;
 
  private:
+
   const unsigned char m_side_size;
   const unsigned char m_big_side_size;
   const unsigned char m_value_string_width;
-  string m_unique_id;
+  std::string m_unique_id;
   std::map<std::pair<unsigned char,unsigned char>, unsigned char> m_values;
 };
 
